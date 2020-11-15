@@ -29,6 +29,7 @@ public class RobotAgent : Agent
     public GameObject Objects;
     // Informacion del entorno
     public List<float> RangoPosicion;
+    private List<string> questionPersons; 
     // Informacion de los sensores
     public List<float> CameraDistanceList;
     private List<float> Detections;
@@ -43,6 +44,8 @@ public class RobotAgent : Agent
     private float NegativeRewardTime = 10; 
     private Vector3 LastPosition; 
     private float WaithTime = 240; 
+    // Informacion del episodio
+    private int nEpisode = 0; 
 
     // Inicializacion del ambiente 
     void Start () {
@@ -74,6 +77,8 @@ public class RobotAgent : Agent
     // Inicio del episodio 
     public override void OnEpisodeBegin()
     {
+        int nPersonas = 0; 
+        questionPersons = new List<string>();
         // Inicializar condiciones de recompenzas e informacion de sensores
         maxTime = 3600;
         WaithTime = 240;
@@ -81,6 +86,7 @@ public class RobotAgent : Agent
         RewardTime = 10;
         rBody.angularVelocity = Vector3.zero;
         rBody.velocity = Vector3.zero;
+        nEpisode = nEpisode + 1; 
         // Activar de forma aleatoria las personas del ambiente 
         for(int i = 0; i < Characteres.transform.childCount; i++)
         {
@@ -89,8 +95,17 @@ public class RobotAgent : Agent
             if(Random.Range(0, 100) < Probabilty)
             {  
                 temp.SetActive(true); 
+                if (temp.GetComponent<AnimationController>() != null)
+                {
+                    AnimationController Animation = temp.GetComponent<AnimationController>();
+                    if (Animation.action == 0)
+                    {
+                        nPersonas = nPersonas + 1; 
+                    }
+                }
             }
         }
+        print("Numero de personas Preguntando en el Episodio " + nEpisode.ToString() + " son: " + nPersonas.ToString()); 
         // Activar de forma aleatoria los objectos del ambiente 
         for(int i = 0; i < Objects.transform.childCount; i++)
         {
@@ -333,6 +348,11 @@ public class RobotAgent : Agent
                     Debug.Log("Que pregunta tienes?");
                     CameraDistanceList[i] =  hit.distance; 
                     NegativeRewardTime = 10; 
+                    if (!questionPersons.Contains(hit.collider.gameObject.name))
+                    {
+                        questionPersons.Add(hit.collider.gameObject.name);
+                        print("En el Episodio " + nEpisode.ToString() + " se ha encontrado " + questionPersons.Count + "personas preguntando"); 
+                    }
                     //Debug.Log(hit.distance);
                 }
                 else if(hit.collider.gameObject.tag == "Alto")
