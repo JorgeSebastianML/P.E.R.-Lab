@@ -269,8 +269,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Aim Pistol
+  animationTime: 60
 --- !u!136 &1931197
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -535,8 +536,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &15328600
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -589,8 +591,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Aim Pistol
+  animationTime: 60
 --- !u!136 &24384806
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1424,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &99204004
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,8 +1635,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &122668503
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3693,8 +3697,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!95 &328880872
 Animator:
   serializedVersion: 3
@@ -3766,8 +3771,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &332043166
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6006,8 +6012,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &541547075
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6096,8 +6103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting Disapproval
+  animationTime: 60
 --- !u!136 &544323154
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6321,8 +6329,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &562594396
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7055,8 +7064,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting And Pointing
+  animationTime: 60
 --- !u!136 &645510656
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7436,8 +7446,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!95 &739441204
 Animator:
   serializedVersion: 3
@@ -8087,8 +8098,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting Disapproval
+  animationTime: 60
 --- !u!136 &831933320
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9419,8 +9431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting Disapproval
+  animationTime: 60
 --- !u!136 &889151031
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11192,8 +11205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!1 &1031396415
 GameObject:
   m_ObjectHideFlags: 0
@@ -11425,8 +11439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting Disapproval
+  animationTime: 60
 --- !u!136 &1031514268
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12173,8 +12188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!95 &1097347947
 Animator:
   serializedVersion: 3
@@ -13141,8 +13157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &1166436795
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13856,8 +13873,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting And Pointing
+  animationTime: 60
 --- !u!1001 &1237706558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14016,8 +14034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting And Pointing
+  animationTime: 60
 --- !u!136 &1255787760
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14347,8 +14366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!95 &1308319535
 Animator:
   serializedVersion: 3
@@ -14530,8 +14550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting Disapproval
+  animationTime: 60
 --- !u!136 &1312553803
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14904,8 +14925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Aim Pistol
+  animationTime: 60
 --- !u!136 &1340552534
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15641,8 +15663,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 1
-  probabilidad: 20
+  probabilidad: 40
   animationName: Aim Pistol
+  animationTime: 60
 --- !u!136 &1432276255
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18507,8 +18530,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Asking Question
+  animationTime: 60
 --- !u!136 &1653295880
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19583,10 +19607,8 @@ MonoBehaviour:
   LinearVelocity: 20
   AngularVelocity: 3
   endDistance: 0.4
-  SensorDistance: 1.5
-  CameraDistance: 6
-  DetectionDistance: 0.6
-  DetectionDistanceObject: 1.2
+  SensorDistance: 1.7
+  CameraDistance: 7
   Probabilty: 20
   maxTime: 3600
   FrontSensors:
@@ -19639,12 +19661,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 65
+    VectorObservationSize: 68
     NumStackedVectorObservations: 1
     VectorActionSize: 05000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: b37e0068bf9eb721d8ccb83752755e76, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: b4024596f3da62fd08c390b5c241e3f8, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 2
   m_BehaviorName: Tesis
@@ -20164,8 +20186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: 0
-  probabilidad: 20
+  probabilidad: 40
   animationName: Sitting And Pointing
+  animationTime: 60
 --- !u!136 &1765084259
 CapsuleCollider:
   m_ObjectHideFlags: 0

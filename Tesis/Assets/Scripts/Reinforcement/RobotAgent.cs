@@ -13,8 +13,6 @@ public class RobotAgent : Agent
     public float endDistance = 0.3f; 
     public float SensorDistance = 1; 
     public float CameraDistance = 2;
-    public float DetectionDistance = 1f;
-    public float DetectionDistanceObject = 1.5f;
     public int Probabilty = 20;
     public float maxTime = 3600;
     // Sensores 
@@ -30,6 +28,7 @@ public class RobotAgent : Agent
     // Informacion del entorno
     public List<float> RangoPosicion;
     private List<string> questionPersons; 
+    private List<string> prohibiteObjtects; 
     // Informacion de los sensores
     public List<float> CameraDistanceList;
     private List<float> Detections;
@@ -43,7 +42,7 @@ public class RobotAgent : Agent
     private float RewardTime = 10;
     private float NegativeRewardTime = 10; 
     private Vector3 LastPosition; 
-    private float WaithTime = 240; 
+    private float WaithTime = 120; 
     // Informacion del episodio
     private int nEpisode = 0; 
 
@@ -78,10 +77,12 @@ public class RobotAgent : Agent
     public override void OnEpisodeBegin()
     {
         int nPersonas = 0; 
+        int nObjects = 0; 
         questionPersons = new List<string>();
+        prohibiteObjtects = new List<string>();
         // Inicializar condiciones de recompenzas e informacion de sensores
         maxTime = 3600;
-        WaithTime = 240;
+        WaithTime = 120;
         NegativeRewardTime = 10;
         RewardTime = 10;
         rBody.angularVelocity = Vector3.zero;
@@ -113,9 +114,11 @@ public class RobotAgent : Agent
             temp.SetActive(false);
             if(Random.Range(0, 100) < Probabilty)
             {  
-                temp.SetActive(true); 
+                temp.SetActive(true);
+                nObjects = nObjects + 1;  
             }
         }
+        print("Numero de objectos prohibidos en el Episodio " + nEpisode.ToString() + " son: " + nObjects.ToString()); 
         // Inicializar aleatoriamente la pocision del robot 
         Vector3 startPosition =  new Vector3(Random.Range(RangoPosicion[0], RangoPosicion[1]), 0.893f, Random.Range(RangoPosicion[2], RangoPosicion[3]));
         this.transform.position = startPosition; 
@@ -350,8 +353,9 @@ public class RobotAgent : Agent
                     NegativeRewardTime = 10; 
                     if (!questionPersons.Contains(hit.collider.gameObject.name))
                     {
+                        SetReward(0.5f);
                         questionPersons.Add(hit.collider.gameObject.name);
-                        print("En el Episodio " + nEpisode.ToString() + " se ha encontrado " + questionPersons.Count + "personas preguntando"); 
+                        print("En el Episodio " + nEpisode.ToString() + " se ha encontrado " + questionPersons.Count + " personas preguntando"); 
                     }
                     //Debug.Log(hit.distance);
                 }
@@ -384,6 +388,12 @@ public class RobotAgent : Agent
                         Debug.Log("Recoja el objecto prohibido");
                         Object_Predict = true;
                         SetReward(1f);
+                    }
+                    if (!prohibiteObjtects.Contains(hit.collider.gameObject.name))
+                    {
+                        prohibiteObjtects.Add(hit.collider.gameObject.name);
+                        SetReward(0.5f);
+                        print("En el Episodio " + nEpisode.ToString() + " se ha encontrado " + prohibiteObjtects.Count + " objectos prohibidos"); 
                     }
                 }
                 else
@@ -431,7 +441,7 @@ public class RobotAgent : Agent
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, LastPosition);
         if(WaithTime < 0)
         {
-            if(distanceToTarget < 0.30)
+            if(distanceToTarget < 0.35)
             {
                 Debug.Log("Se quedo quieto mucho tiempo");
                 SetReward(-1f);
@@ -439,9 +449,9 @@ public class RobotAgent : Agent
             }
             else
             {
-                SetReward((float)(0.01*distanceToTarget));
+                SetReward((float)(0.02*distanceToTarget));
                 LastPosition = this.transform.localPosition;
-                WaithTime = 240;
+                WaithTime = 120;
             }
         }
         

@@ -22,27 +22,30 @@ public class AnimationController : MonoBehaviour
         if (MaxTime <= 0)
         {
             MaxTime = animationTime + Random.Range(-30, 30);
-            if (this.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(animationName))
-            {
-                if(action == 0)
-                {
-                    this.gameObject.transform.tag = "Pregunta";
-                }
-                else
-                {
-                    this.gameObject.transform.tag = "Alto";
-                }
-                
-                return; 
-            }
-            else if (Random.Range(0, 100) <= probabilidad)
+            
+            if (Random.Range(0, 100) <= probabilidad)
             {
                 this.gameObject.GetComponent<Animator>().Play(animationName);
             }
+            
+        }
+
+        if (this.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        {
+            if(action == 0)
+            {
+                this.gameObject.transform.tag = "Pregunta";
+            }
             else
             {
-                this.gameObject.transform.tag = "Ninguna";
+                this.gameObject.transform.tag = "Alto";
             }
+            
+            return; 
+        }
+        else
+        {
+            this.gameObject.transform.tag = "Ninguna";
         }
         
     }
