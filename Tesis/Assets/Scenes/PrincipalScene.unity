@@ -19604,7 +19604,9 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  LinearVelocity: 20
+  learningOptions: 1
+  timeOptions: 1.5
+  LinearVelocity: 15
   AngularVelocity: 3
   endDistance: 0.4
   SensorDistance: 1.7

@@ -17,7 +17,6 @@ public class CustomMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
         Debug.DrawRay(Sensors.transform.position, Sensors.transform.up * -0.5f, Color.red);
 
         if (Input.GetKey(KeyCode.W))
