@@ -220,7 +220,7 @@ public class RobotAgent : Agent
                 if(vectorAction[2] >= 0.5)
                 {
                     rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity;
-                    rBody.AddTorque(new Vector3(0f, 1, 0f), ForceMode.Impulse);
+                    rBody.AddTorque(new Vector3(0f, 1f, 0f), ForceMode.Impulse);
                     rotationDir = -1f;
                 } 
                 else if(vectorAction[2] <= -0.5)
@@ -233,7 +233,7 @@ public class RobotAgent : Agent
                 {
                     rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
                     rBody.AddTorque(new Vector3(0f, 0f, 0f), ForceMode.Impulse);
-                    rBody.angularVelocity = Vector3.zero;
+                    rBody.maxAngularVelocity = 0;
                 }
             }
 
@@ -242,7 +242,7 @@ public class RobotAgent : Agent
                 isInAction = true;
                 Vector3 controlSignal = Vector3.zero;
                 rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
-                rBody.angularVelocity = Vector3.zero;
+                rBody.maxAngularVelocity = 0;
                 controlSignal.z = 1f;
                 rBody.AddRelativeForce(controlSignal * LinearVelocity);
                 controlTime -= Time.deltaTime;
@@ -259,7 +259,7 @@ public class RobotAgent : Agent
                 isInAction = true;
                 Vector3 controlSignal = Vector3.zero;
                 rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
-                rBody.angularVelocity = Vector3.zero;
+                rBody.maxAngularVelocity = 0;
                 controlSignal.z = 0f;
                 rBody.AddRelativeForce(controlSignal * LinearVelocity);
                 controlTime -= Time.deltaTime;
@@ -276,7 +276,7 @@ public class RobotAgent : Agent
                 isInAction = true;
                 Vector3 controlSignal = Vector3.zero;
                 rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
-                rBody.angularVelocity = Vector3.zero;
+                rBody.maxAngularVelocity = 0;
                 controlSignal.x = 1f;
                 rBody.AddRelativeForce(controlSignal * LinearVelocity);
                 controlTime -= Time.deltaTime;
@@ -293,7 +293,7 @@ public class RobotAgent : Agent
                 isInAction = true;
                 Vector3 controlSignal = Vector3.zero;
                 rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
-                rBody.angularVelocity = Vector3.zero;
+                rBody.maxAngularVelocity = 0;
                 controlSignal.x = -1f;
                 rBody.AddRelativeForce(controlSignal * LinearVelocity);
                 controlTime -= Time.deltaTime;
@@ -562,7 +562,7 @@ public class RobotAgent : Agent
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, LastPosition);
         if(WaithTime < 0)
         {
-            if(distanceToTarget < 0.35)
+            if(distanceToTarget < 0.5)
             {
                 Debug.Log("Se quedo quieto mucho tiempo");
                 SetReward(-1f);
