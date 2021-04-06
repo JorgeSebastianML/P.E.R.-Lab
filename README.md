@@ -1,2 +1,3 @@
-# Unity_simulation_pepper_robot
-Simulation in Unity for the pepper robot
+# P.E.R. Lab
+
+Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the Pepper robot
