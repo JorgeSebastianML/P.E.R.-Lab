@@ -19518,7 +19518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738630798}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.99, y: 0.628, z: 1.71}
+  m_LocalPosition: {x: -2.13, y: 0.628, z: 2.62}
   m_LocalScale: {x: 0.73893136, y: 0.73893136, z: 0.73893136}
   m_Children:
   - {fileID: 319599185}
@@ -19604,7 +19604,9 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  LinearVelocity: 20
+  learningOptions: 1
+  timeOptions: 1
+  LinearVelocity: 15
   AngularVelocity: 3
   endDistance: 0.4
   SensorDistance: 1.7
@@ -19643,10 +19645,10 @@ MonoBehaviour:
   board: {fileID: 1343126599}
   Objects: {fileID: 1205899075}
   RangoPosicion:
-  - -4.3
-  - 4.3
-  - 0.7
-  - 15
+  - -4.2
+  - 4.2
+  - 0.8
+  - 14
   CameraDistanceList: []
 --- !u!114 &1738630805
 MonoBehaviour:

@@ -7,6 +7,13 @@ public class RobotAgent : Agent
 {
     // Variables
     Rigidbody rBody;
+    // Tipo de entrenamiento: 
+    public bool learningOptions = false;
+    public float timeOptions = 2;  
+    private List<bool> timeFlag;
+    private float controlTime; 
+    private bool isInAction = false; 
+    private float rotationDir = 0;
     // Parametros del robot
     public float LinearVelocity = 1;
     public float AngularVelocity = 1;
@@ -49,6 +56,7 @@ public class RobotAgent : Agent
     // Inicializacion del ambiente 
     void Start () {
         // Inicializar la informacion de la pocision, fisicas y sensores del robot
+        controlTime = timeOptions; 
         LastPosition = this.transform.localPosition; 
         rBody = GetComponent<Rigidbody>();
         child = transform.GetChild(0).gameObject;
@@ -71,6 +79,13 @@ public class RobotAgent : Agent
             CameraDistanceList.Add(CameraDistance); 
         }
         RotationCamera = child.transform.localEulerAngles;
+        timeFlag = new List<bool>(); 
+        for(int i = 0; i < 4; i++)
+        {
+            timeFlag.Add(false); 
+        }
+        isInAction = false;
+        rotationDir = 0;
     }
 
     // Inicio del episodio 
@@ -80,6 +95,7 @@ public class RobotAgent : Agent
         int nObjects = 0; 
         questionPersons = new List<string>();
         prohibiteObjtects = new List<string>();
+        rotationDir = 0;
         // Inicializar condiciones de recompenzas e informacion de sensores
         maxTime = 3600;
         WaithTime = 120;
@@ -88,6 +104,7 @@ public class RobotAgent : Agent
         rBody.angularVelocity = Vector3.zero;
         rBody.velocity = Vector3.zero;
         nEpisode = nEpisode + 1; 
+        controlTime = timeOptions; 
         // Activar de forma aleatoria las personas del ambiente 
         for(int i = 0; i < Characteres.transform.childCount; i++)
         {
@@ -127,6 +144,12 @@ public class RobotAgent : Agent
         // Inicializar aleatoriamente la pocision del tablero 
         board.transform.position = new Vector3(Random.Range(RangoPosicion[0], RangoPosicion[1]), 0.1f, Random.Range(RangoPosicion[2], RangoPosicion[3]));
         board.transform.Rotate(0, Random.Range(0, 360), 0); 
+
+        for(int i = 0; i < 4; i++)
+        {
+            timeFlag[i] = false; 
+        }
+        isInAction = false;
     }
 
     // Recoleccion de Observaciones
@@ -173,46 +196,147 @@ public class RobotAgent : Agent
     //
     public override void OnActionReceived(float[] vectorAction)
     {
-        // Actions, size = 2
-        Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = vectorAction[0];
-        controlSignal.z = vectorAction[1];
-        if(controlSignal.z < 0)
+        // Actions
+        if(learningOptions == true)
         {
-            controlSignal.z = 0;
+            if((vectorAction[1] > 0.5) && (isInAction == false))
+            {
+                timeFlag[0] = true;
+            }
+            else if((vectorAction[1] < -0.5) && (isInAction == false))
+            {
+                timeFlag[1] = true;
+            }
+            else if((vectorAction[0] > 0.5) && (isInAction == false))
+            {
+                timeFlag[2] = true;
+            }
+            else if((vectorAction[0] < -0.5) && (isInAction == false))
+            {
+                timeFlag[3] = true;
+            }
+            else
+            {
+                if(vectorAction[2] >= 0.5)
+                {
+                    rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity;
+                    rBody.AddTorque(new Vector3(0f, 1f, 0f), ForceMode.Impulse);
+                    rotationDir = -1f;
+                } 
+                else if(vectorAction[2] <= -0.5)
+                {
+                    rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity*1;
+                    rBody.AddTorque(new Vector3(0f, -1f, 0f), ForceMode.Impulse);
+                    rotationDir = 1f;
+                }
+                else
+                {
+                    rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
+                    rBody.AddTorque(new Vector3(0f, 0f, 0f), ForceMode.Impulse);
+                    rBody.maxAngularVelocity = 0;
+                }
+            }
+
+            if(timeFlag[0] == true)
+            {
+                isInAction = true;
+                Vector3 controlSignal = Vector3.zero;
+                rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
+                rBody.maxAngularVelocity = 0;
+                controlSignal.z = 1f;
+                rBody.AddRelativeForce(controlSignal * LinearVelocity);
+                controlTime -= Time.deltaTime;
+                if(controlTime < 0)
+                {
+                    timeFlag[0] = false;
+                    controlTime = timeOptions; 
+                    isInAction = false; 
+                    rBody.velocity = Vector3.zero;
+                }
+            }
+            else if(timeFlag[1] == true)
+            {
+                isInAction = true;
+                Vector3 controlSignal = Vector3.zero;
+                rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
+                rBody.maxAngularVelocity = 0;
+                controlSignal.z = 0f;
+                rBody.AddRelativeForce(controlSignal * LinearVelocity);
+                controlTime -= Time.deltaTime;
+                if(controlTime < 0)
+                {
+                    timeFlag[1] = false;
+                    controlTime = timeOptions; 
+                    isInAction = false; 
+                    rBody.velocity = Vector3.zero;
+                }
+            }
+            else if(timeFlag[2] == true)
+            {
+                isInAction = true;
+                Vector3 controlSignal = Vector3.zero;
+                rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
+                rBody.maxAngularVelocity = 0;
+                controlSignal.x = 1f;
+                rBody.AddRelativeForce(controlSignal * LinearVelocity);
+                controlTime -= Time.deltaTime;
+                if(controlTime < 0)
+                {
+                    timeFlag[2] = false;
+                    controlTime = timeOptions; 
+                    isInAction = false; 
+                    rBody.velocity = Vector3.zero;
+                }
+            }
+            else if(timeFlag[3] == true)
+            {
+                isInAction = true;
+                Vector3 controlSignal = Vector3.zero;
+                rBody.AddTorque(new Vector3(0f, rotationDir, 0f), ForceMode.Impulse);
+                rBody.maxAngularVelocity = 0;
+                controlSignal.x = -1f;
+                rBody.AddRelativeForce(controlSignal * LinearVelocity);
+                controlTime -= Time.deltaTime;
+                if(controlTime < 0)
+                {
+                    timeFlag[3] = false;
+                    controlTime = timeOptions; 
+                    isInAction = false; 
+                    rBody.velocity = Vector3.zero;
+                }
+            }           
         }
-        //Vector3 controlSignalRotation = Vector3.zero;
-        //controlSignalRotation.y = vectorAction[2]; 
-        
-        //this.transform.Translate(controlSignal * Time.deltaTime * LinearVelocity);
-        //Debug.Log(controlSignal * LinearVelocity); 
-        rBody.AddRelativeForce(controlSignal * LinearVelocity);
-        rBody.velocity = Vector3.ClampMagnitude(rBody.velocity, 5);
-        //rBody.AddTorque(controlSignalRotation*AngularVelocity);
-        //var torqueY = Mathf.Clamp(vectorAction[2], -1f, 1f) * AngularVelocity; 
-        
-        if(vectorAction[2] >= 0)
-        {
-            rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity;
-            rBody.AddTorque(new Vector3(0f, 1, 0f), ForceMode.Impulse);
-        } 
         else
         {
-            rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity*1;
-            rBody.AddTorque(new Vector3(0f, -1f, 0f), ForceMode.Impulse);
+            Vector3 controlSignal = Vector3.zero;
+            controlSignal.x = vectorAction[0];
+            controlSignal.z = vectorAction[1];
+            if(controlSignal.z < 0)
+            {
+                controlSignal.z = 0;
+            } 
+            rBody.AddRelativeForce(controlSignal * LinearVelocity);
+            rBody.velocity = Vector3.ClampMagnitude(rBody.velocity, 5);
+            
+            if(vectorAction[2] >= 0)
+            {
+                rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity;
+                rBody.AddTorque(new Vector3(0f, 1, 0f), ForceMode.Impulse);
+            } 
+            else
+            {
+                rBody.maxAngularVelocity = vectorAction[2]*AngularVelocity*1;
+                rBody.AddTorque(new Vector3(0f, -1f, 0f), ForceMode.Impulse);
+            }
         }
         
-        //this.transform.Rotate(controlSignalRotation * Time.deltaTime * AngularVelocity);
         if(vectorAction[3] > 0)
         {
             Quaternion target = Quaternion.Euler(vectorAction[3]*30, 0, 0);
-            child.transform.localRotation = Quaternion.Slerp(child.transform.localRotation, target,  Time.deltaTime * 5f);
-            //Debug.Log(vectorAction[3]*30);
-            
+            child.transform.localRotation = Quaternion.Slerp(child.transform.localRotation, target,  Time.deltaTime * 5f);     
         }
         else if(vectorAction[3] < 0)
         {
-            //Debug.Log(360 + vectorAction[3]*30);
             Quaternion target = Quaternion.Euler(360 + vectorAction[3]*30, 0, 0);
             child.transform.localRotation = Quaternion.Slerp(child.transform.localRotation, target,  Time.deltaTime * 5f);
         }
@@ -222,10 +346,7 @@ public class RobotAgent : Agent
             child.transform.localRotation = Quaternion.Slerp(child.transform.localRotation, target,  Time.deltaTime * 5f);
         }
 
-        //float HeadRotation = vectorAction[3] * AngularVelocity * Time.deltaTime; 
         bool Object_Predict = false; 
-
-        //child.transform.Rotate(HeadRotation, 0, 0); 
         
         RotationCamera = child.transform.localRotation.eulerAngles / 180.0f - Vector3.one;
 
@@ -441,7 +562,7 @@ public class RobotAgent : Agent
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, LastPosition);
         if(WaithTime < 0)
         {
-            if(distanceToTarget < 0.35)
+            if(distanceToTarget < 0.5)
             {
                 Debug.Log("Se quedo quieto mucho tiempo");
                 SetReward(-1f);
