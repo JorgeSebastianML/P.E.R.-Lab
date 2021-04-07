@@ -19,4 +19,6 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Apple.
   * Water bottle.
   * Pringles. 
+  * Coca cola bottle.
+  * Cell phone. 
 * 
