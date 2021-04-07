@@ -21,4 +21,10 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Pringles. 
   * Coca cola bottle.
   * Cell phone. 
+* 3D models of people obtained from Mixamo, which can make the following animations:
+  * Walk. 
+  * Type on a pc.
+  * Ask.
+  * Ask to stop.
+  * 
 * 
