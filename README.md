@@ -5,5 +5,12 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
 ## Contains
 * Pepper robot model with the following sensors:
   * Infrared sensors.
-  * 2D cameras. 
-*  
+  * 2D Cameras. 
+  * 3D Camera.
+* The environment has the following 3D models:
+  * Table.
+  * Chair.
+  * Monitor.
+  * Keyboard.
+  * Oscilloscope.
+* 
