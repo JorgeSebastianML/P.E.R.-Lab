@@ -13,4 +13,10 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Monitor.
   * Keyboard.
   * Oscilloscope.
+  * Multimeter.
+  * DC source.
+  * Signal generator.
+  * Apple.
+  * Water bottle.
+  * Pringles. 
 * 
