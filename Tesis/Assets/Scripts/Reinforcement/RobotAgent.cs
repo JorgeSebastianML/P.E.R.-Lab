@@ -36,6 +36,7 @@ public class RobotAgent : Agent
     public List<float> RangoPosicion;
     private List<string> questionPersons; 
     private List<string> prohibiteObjtects; 
+    private List<string> detectedObjects;
     // Informacion de los sensores
     public List<float> CameraDistanceList;
     private List<float> Detections;
@@ -95,6 +96,7 @@ public class RobotAgent : Agent
         int nObjects = 0; 
         questionPersons = new List<string>();
         prohibiteObjtects = new List<string>();
+        detectedObjects = new List<string>(); 
         rotationDir = 0;
         // Inicializar condiciones de recompenzas e informacion de sensores
         maxTime = 3600;
@@ -132,17 +134,20 @@ public class RobotAgent : Agent
             if(Random.Range(0, 100) < Probabilty)
             {  
                 temp.SetActive(true);
-                nObjects = nObjects + 1;  
+                nObjects = nObjects + 1;
+                detectedObjects.Add(temp.name);  
             }
         }
         print("Numero de objectos prohibidos en el Episodio " + nEpisode.ToString() + " son: " + nObjects.ToString()); 
         // Inicializar aleatoriamente la pocision del robot 
         Vector3 startPosition =  new Vector3(Random.Range(RangoPosicion[0], RangoPosicion[1]), 0.893f, Random.Range(RangoPosicion[2], RangoPosicion[3]));
-        this.transform.position = startPosition; 
-        this.transform.Rotate(0, Random.Range(0, 360), 0); 
-        LastPosition = this.transform.localPosition;
+        //print("Posicion de inicio en el episodio " + nEpisode.ToString() + " es: " + startPosition.ToString()); 
+        transform.localPosition = startPosition; 
+        transform.Rotate(0, Random.Range(0, 360), 0); 
+        LastPosition = transform.localPosition;
+        //print("Posicion registrada de inicio en el episodio " + nEpisode.ToString() + " es: " + LastPosition.ToString()); 
         // Inicializar aleatoriamente la pocision del tablero 
-        board.transform.position = new Vector3(Random.Range(RangoPosicion[0], RangoPosicion[1]), 0.1f, Random.Range(RangoPosicion[2], RangoPosicion[3]));
+        board.transform.localPosition = new Vector3(Random.Range(RangoPosicion[0], RangoPosicion[1]), 0.1f, Random.Range(RangoPosicion[2], RangoPosicion[3]));
         board.transform.Rotate(0, Random.Range(0, 360), 0); 
 
         for(int i = 0; i < 4; i++)
@@ -364,6 +369,7 @@ public class RobotAgent : Agent
                     {
                         Debug.Log("choco");
                         SetReward(-1.0f);
+                        ListOfObjects(); 
                         EndEpisode();
                     }
                 }
@@ -393,6 +399,7 @@ public class RobotAgent : Agent
                     {
                         Debug.Log("choco");
                         SetReward(-1.0f);
+                        ListOfObjects();
                         EndEpisode();
                     }
                 }
@@ -422,6 +429,7 @@ public class RobotAgent : Agent
                     {
                         Debug.Log("choco");
                         SetReward(-1.0f);
+                        ListOfObjects(); 
                         EndEpisode();
                     }
                 }
@@ -550,6 +558,7 @@ public class RobotAgent : Agent
         RewardTime -= Time.deltaTime;
         if(maxTime < 0)
         {
+            ListOfObjects(); 
             EndEpisode();
         }
         if(RewardTime < 0)
@@ -566,6 +575,7 @@ public class RobotAgent : Agent
             {
                 Debug.Log("Se quedo quieto mucho tiempo");
                 SetReward(-1f);
+                ListOfObjects(); 
                 EndEpisode();
             }
             else
@@ -584,6 +594,7 @@ public class RobotAgent : Agent
         if (this.transform.localPosition.y < 0)
         {
             //Debug.Log("condicion 2");
+            ListOfObjects(); 
             EndEpisode();
         }
     }
@@ -595,6 +606,20 @@ public class RobotAgent : Agent
         actionsOut[2] = Input.GetAxis("Mouse X");
         actionsOut[3] = Input.GetAxis("Mouse Y");
         actionsOut[4] = Input.GetAxis("Fire1");
+    }
+
+    private void ListOfObjects()
+    {
+        List<string> list = new List<string>(); 
+        for(int i = 0; i < detectedObjects.Count; i++)
+        {
+            if (!prohibiteObjtects.Contains(detectedObjects[i]))
+            {
+                list.Add(detectedObjects[i]); 
+            }
+        }
+        
+        print("Objetos no reconocidos en el episodio " + nEpisode.ToString() + " son: " + string.Join(" ", list)); 
     }
 
 }
