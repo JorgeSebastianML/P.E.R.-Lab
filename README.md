@@ -1,6 +1,6 @@
 # P.E.R. Lab
 
-![alt text](https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/LOGO_PERLAB-03.png?raw=true | width=100)
+![alt text](https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/LOGO_PERLAB-03.png | width=100)
 
 Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the Pepper robot.
 
