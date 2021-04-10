@@ -1,6 +1,6 @@
 # P.E.R. Lab
 
-<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/LOGO_PERLAB-03.png " width="100" height="100">
+<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/LOGO_PERLAB-03.png " width="300" height="300">
 
 Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the Pepper robot.
 
@@ -30,3 +30,7 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Type on a pc.
   * Ask.
   * Ask to stop.
+
+## Requirements
+* Unity 5 Version >=2019.
+* ml-agents unity Release 6.
