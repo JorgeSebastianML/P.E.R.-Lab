@@ -52,15 +52,25 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
 |       Reward       |                                            Description                                            |
 |:------------------:|:-------------------------------------------------------------------------------------------------:|
 |         -1         | When the robot detects with the lasers objects less than 40 cm away.                              |
-|     1-(DRS/MDS)    | Se da dependiendo de que tanto se acerque el robot a  una persona que esta preguntando.           |
-| -0.9*(1-(DRS/MDS)) | Se da dependiendo de que tanto se acerque el robot a una persona que no quiere que se le acerque. |
-|          1         | Cuando detecta un objeto prohibido y manda la señal de advertencia.                               |
-|        -0.1        | Cuando no detecta un objeto prohibido y manda la señal de advertencia.                            |
-|        0.01        | Se da cada 10 seg. que el robot permanezca sin chocar.                                            |
-|         -1         | Si el robot no se mueve mas de 35cm en un minuto.                                                 |
-|       -0.005       | Si el robot no encuentra una persona que pregunta en 10 seg.                                      |
+|     1-(DRS/MSD)    | It occurs depending on how close the robot is to a person who is asking.                          |
+| -0.9*(1-(DRS/MSD)) | It occurs depending on how close the robot is to a person that it does not want to be approached. |
+|          1         | When it detects a prohibited object and sends the warning signal.                                 |
+|        -0.1        | When it does not detect a prohibited object and sends the warning signal.                         |
+|        0.01        | It occurs every 10 sec. that the robot remains without colliding.                                 |
+|         -1         | If the robot does not move more than 35cm in one minute.                                          |
+|       -0.005       | If the robot does not find a questioner within 10 sec.                                            |
+
+DRS: Distance Returned by Sensor.
+
+MSD: Maximum Sensor Distance.
+
+## Instructions
+1. Clone the repository.
+2. Download release 6 from the Unity ML-Agents Toolkit repository.
+3. In Unity open the project.
+4. 
 
 ## Requirements
 * Unity 5 Version >=2019.
-* ml-agents unity Release 6 https://github.com/Unity-Technologies/ml-agents.
+* Unity ML-Agents Toolkit Release 6 https://github.com/Unity-Technologies/ml-agents.
 * S.O. Windows 10, Linux Ubuntu. 
