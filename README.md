@@ -30,6 +30,7 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Type on a pc.
   * Ask.
   * Ask to stop.
+* Trained model.
 
 ## Reinforcement Learning
 
@@ -70,6 +71,10 @@ MSD: Maximum Sensor Distance.
 3. In Unity open the project, select the robot and in the options bar on the right and change the behavior type to default.
 4. Open a terminal at the address where the Unity ML-Agents Toolkit repository was downloaded and run the following command: ```mlagents-learn config/ppo/Tesis.yaml --run-id=Tesis```
 5. run the simulation in Unity.
+
+## Instructions for running the simulation with the trained model
+1. Clone the repository.
+2. In Unity open the project, select the robot and in the options bar on the right and change the behavior type to default.
 
 ## Requirements
 * Unity 5 Version >=2019.
