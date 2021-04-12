@@ -64,12 +64,12 @@ DRS: Distance Returned by Sensor.
 
 MSD: Maximum Sensor Distance.
 
-## Instructions
+## Instructions for training a new model
 1. Clone the repository.
 2. Download release 6 from the Unity ML-Agents Toolkit repository.
-3. In Unity open the project.
+3. In Unity open the project, select the robot and in the options bar on the right and change the behavior type to default.
 4. Open a terminal at the address where the Unity ML-Agents Toolkit repository was downloaded and run the following command: ```mlagents-learn config/ppo/Tesis.yaml --run-id=Tesis```
-5. 
+5. run the simulation in Unity.
 
 ## Requirements
 * Unity 5 Version >=2019.
