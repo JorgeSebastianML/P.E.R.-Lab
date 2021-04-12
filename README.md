@@ -36,7 +36,16 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
 ### Supported algorithms
 * Proximal Police Optimization (PPO).
 * Soft Actor-Critic (SAC).
-* Q-Learning. 
+* Q-Learning.
+
+### Environmental observations
+* Linear speed of the robot in the X axis.
+* Linear speed of the robot in the Z axis.
+* Angular speed of rotation of the robot about its own axis.
+* Head angle.
+* Distance information from the robot's laser sensors.
+* Depth information from the robot's 3D camera.
+* Images captured by the robot's 2D cameras.
 
 ## Requirements
 * Unity 5 Version >=2019.
