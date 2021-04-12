@@ -33,4 +33,5 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
 
 ## Requirements
 * Unity 5 Version >=2019.
-* ml-agents unity Release 6.
+* ml-agents unity Release 6 https://github.com/Unity-Technologies/ml-agents.
+* S.O. Windows 10, Linux Ubuntu. 
