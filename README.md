@@ -47,6 +47,19 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
 * Depth information from the robot's 3D camera.
 * Images captured by the robot's 2D cameras.
 
+### Default rewards
+
+|       Reward       |                                            Description                                            |
+|:------------------:|:-------------------------------------------------------------------------------------------------:|
+|         -1         | When the robot detects with the lasers objects less than 40 cm away.                              |
+|     1-(DRS/MDS)    | Se da dependiendo de que tanto se acerque el robot a  una persona que esta preguntando.           |
+| -0.9*(1-(DRS/MDS)) | Se da dependiendo de que tanto se acerque el robot a una persona que no quiere que se le acerque. |
+|          1         | Cuando detecta un objeto prohibido y manda la señal de advertencia.                               |
+|        -0.1        | Cuando no detecta un objeto prohibido y manda la señal de advertencia.                            |
+|        0.01        | Se da cada 10 seg. que el robot permanezca sin chocar.                                            |
+|         -1         | Si el robot no se mueve mas de 35cm en un minuto.                                                 |
+|       -0.005       | Si el robot no encuentra una persona que pregunta en 10 seg.                                      |
+
 ## Requirements
 * Unity 5 Version >=2019.
 * ml-agents unity Release 6 https://github.com/Unity-Technologies/ml-agents.
