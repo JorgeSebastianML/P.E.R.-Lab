@@ -31,6 +31,13 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Ask.
   * Ask to stop.
 
+## Reinforcement Learning
+
+### Supported algorithms
+* Proximal Police Optimization (PPO).
+* Soft Actor-Critic (SAC).
+* Q-Learning. 
+
 ## Requirements
 * Unity 5 Version >=2019.
 * ml-agents unity Release 6 https://github.com/Unity-Technologies/ml-agents.
