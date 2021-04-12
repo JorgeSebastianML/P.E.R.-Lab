@@ -68,7 +68,8 @@ MSD: Maximum Sensor Distance.
 1. Clone the repository.
 2. Download release 6 from the Unity ML-Agents Toolkit repository.
 3. In Unity open the project.
-4. Open a terminal at the address where the Unity ML-Agents Toolkit repository was downloaded and run the following command: mlagents-learn config/ppo/Tesis.yaml --run-id=Tesis
+4. Open a terminal at the address where the Unity ML-Agents Toolkit repository was downloaded and run the following command: ```mlagents-learn config/ppo/Tesis.yaml --run-id=Tesis```
+5. 
 
 ## Requirements
 * Unity 5 Version >=2019.
