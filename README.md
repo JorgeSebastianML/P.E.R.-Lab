@@ -67,7 +67,8 @@ DRS: Distance Returned by Sensor.
 MSD: Maximum Sensor Distance.
 
 ### Actions
-
+<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/direcciones_robot-05.png " width="300" height="300">
+<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/Opera_dialogo-06.png " width="300" height="300">
 #### Actions for conventional reinforcement learning
 * Move forward.
 * Move right.
