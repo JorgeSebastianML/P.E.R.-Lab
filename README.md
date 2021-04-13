@@ -4,8 +4,6 @@
 
 Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the Pepper robot.
 
-
-
 ## Contains
 * Pepper robot model with the following sensors:
   * Infrared sensors.
@@ -67,8 +65,9 @@ DRS: Distance Returned by Sensor.
 MSD: Maximum Sensor Distance.
 
 ### Actions
-<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/direcciones_robot-05.png " width="300" height="300">
-<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/Opera_dialogo-06.png " width="300" height="300">
+<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/direcciones_robot-05.png " width="250" height="250">
+<img src="https://github.com/JorgeSebastianML/Unity_simulation_pepper_robot/blob/main/Img/Opera_dialogo-06.png " width="250" height="250">
+
 #### Actions for conventional reinforcement learning
 * Move forward.
 * Move right.
