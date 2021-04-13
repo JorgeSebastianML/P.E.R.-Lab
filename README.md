@@ -31,6 +31,7 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
   * Ask.
   * Ask to stop.
 * Trained model.
+* Option to select between conventional reinforcement learning and learning options.
 
 ## Reinforcement Learning
 
@@ -64,6 +65,15 @@ Simulator in Unity 5 of a laboratory to carry out reinforcement learning for the
 DRS: Distance Returned by Sensor.
 
 MSD: Maximum Sensor Distance.
+
+### Actions
+
+#### Actions for conventional reinforcement learning
+* Move forward.
+* Move right.
+* Move Left. 
+* Rotate on its own axis clockwise.
+* rotate on its own axis counterclockwise.
 
 ## Instructions for training a new model
 1. Clone the repository.
