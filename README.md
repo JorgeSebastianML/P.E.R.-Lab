@@ -73,7 +73,14 @@ MSD: Maximum Sensor Distance.
 * Move right.
 * Move Left. 
 * Rotate on its own axis clockwise.
-* rotate on its own axis counterclockwise.
+* Rotate on its own axis counterclockwise.
+
+#### Actions with Learning options
+* Only move forward by one meter.
+* Only move right by one meter.
+* Only move left by one meter.
+* Rotate only on its own axis clockwise.
+* Rotate only on its own axis counterclockwise.
 
 ## Instructions for training a new model
 1. Clone the repository.
