@@ -201,9 +201,10 @@ public class RobotAgent : Agent
     //
     public override void OnActionReceived(float[] vectorAction)
     {
-        // Actions
-        if(learningOptions == true)
+        // Acciones
+        if(learningOptions == true) // Acciones de Learning Option
         {
+            // Verificacion de que solo una accion se ejecute a la vez
             if((vectorAction[1] > 0.5) && (isInAction == false))
             {
                 timeFlag[0] = true;
