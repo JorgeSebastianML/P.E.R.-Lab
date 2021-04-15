@@ -91,7 +91,7 @@ MSD: Maximum Sensor Distance.
 
 ## Instructions for running the simulation with the trained model
 1. Clone the repository.
-2. In Unity open the project, select the robot and in the options bar on the right and change the behavior type to default.
+2. In Unity open the project, select the robot and in the options bar on the right and change the behavior type to Inference Only.
 3. run the simulation in Unity.
 
 ## Requirements
