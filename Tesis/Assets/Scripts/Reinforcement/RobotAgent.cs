@@ -80,6 +80,7 @@ public class RobotAgent : Agent
             CameraDistanceList.Add(CameraDistance); 
         }
         RotationCamera = child.transform.localEulerAngles;
+        // Se inicializarn las banderas 
         timeFlag = new List<bool>(); 
         for(int i = 0; i < 4; i++)
         {
@@ -176,7 +177,7 @@ public class RobotAgent : Agent
         {
             sensor.AddObservation(CameraDetections_Stop[i]);
         }
-
+        
         for(int i = 0; i < CameraDetections_Question.Count; i++)
         {
             sensor.AddObservation(CameraDetections_Question[i]);
@@ -607,6 +608,7 @@ public class RobotAgent : Agent
         actionsOut[4] = Input.GetAxis("Fire1");
     }
 
+    // Funcion que permite idenificar cuantos objetos no son encontrados durante un episodeo 
     private void ListOfObjects()
     {
         List<string> list = new List<string>(); 
