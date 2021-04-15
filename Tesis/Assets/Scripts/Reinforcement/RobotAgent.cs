@@ -312,7 +312,7 @@ public class RobotAgent : Agent
                 }
             }           
         }
-        else
+        else // Acciones continuas
         {
             Vector3 controlSignal = Vector3.zero;
             controlSignal.x = vectorAction[0];
@@ -335,7 +335,7 @@ public class RobotAgent : Agent
                 rBody.AddTorque(new Vector3(0f, -1f, 0f), ForceMode.Impulse);
             }
         }
-        
+        // Accion: Rotacion sobre el mismo eje
         if(vectorAction[3] > 0)
         {
             Quaternion target = Quaternion.Euler(vectorAction[3]*30, 0, 0);
@@ -356,7 +356,7 @@ public class RobotAgent : Agent
         
         RotationCamera = child.transform.localRotation.eulerAngles / 180.0f - Vector3.one;
 
-        // Laser Sensors
+        // Lectura de sensores laseres
         for(int i = 0; i < FrontSensors.Count; i++)
         {
             RaycastHit hit;
@@ -448,7 +448,7 @@ public class RobotAgent : Agent
             }
 
         }
-        //Camera view
+        //Lectura de camara de profundidad
         for(int i = 0; i < CameraView.Count; i++)
         {
             RaycastHit hit;
@@ -548,28 +548,31 @@ public class RobotAgent : Agent
             }
             
         }
-        
+        // Verificacion señal de advertencia
         if(vectorAction[4] >= 0 && Object_Predict == false)
         {
             SetReward(-0.2f);
             Debug.Log("Me equivoque en recoja el objecto prohibido");
         }
-
+        // Calculo del teimpo de ejecucion
         maxTime -= Time.deltaTime;
         RewardTime -= Time.deltaTime;
-        if(maxTime < 0)
+        if(maxTime < 0) // Condicion de terminacion del episodeo, tiempo maximo 
         {
             ListOfObjects(); 
             EndEpisode();
         }
+        // Condicion de recompenza cuando no se choca en x tiempo
         if(RewardTime < 0)
         {
             SetReward(0.01f);
             RewardTime = 10;
             Debug.Log("Recompenza tiempo");
         }
+        // Calculo de distancia recorrida y tiempo trancurrido
         WaithTime -= Time.deltaTime;
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, LastPosition);
+        // Condicion de recompenza negativa de mquedarse quieto mucho tiempo
         if(WaithTime < 0)
         {
             if(distanceToTarget < 0.5)
@@ -586,20 +589,15 @@ public class RobotAgent : Agent
                 WaithTime = 120;
             }
         }
-        
-
-        
-        // Rewards
-
-        // Fell off platform
+        // Condicion de caerse de la plataforma
         if (this.transform.localPosition.y < 0)
         {
-            //Debug.Log("condicion 2");
             ListOfObjects(); 
             EndEpisode();
         }
     }
 
+    // Controles manuales para mover el robot por medio de periferico
     public override void Heuristic(float[] actionsOut)
     {
         actionsOut[0] = Input.GetAxis("Horizontal");
