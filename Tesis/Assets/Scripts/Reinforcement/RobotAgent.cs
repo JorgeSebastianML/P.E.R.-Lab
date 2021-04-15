@@ -177,7 +177,7 @@ public class RobotAgent : Agent
         {
             sensor.AddObservation(CameraDetections_Stop[i]);
         }
-        
+
         for(int i = 0; i < CameraDetections_Question.Count; i++)
         {
             sensor.AddObservation(CameraDetections_Question[i]);
@@ -243,7 +243,7 @@ public class RobotAgent : Agent
                     rBody.maxAngularVelocity = 0;
                 }
             }
-
+            // Mantener la direccion x tiempo
             if(timeFlag[0] == true)
             {
                 isInAction = true;
@@ -358,7 +358,7 @@ public class RobotAgent : Agent
         RotationCamera = child.transform.localRotation.eulerAngles / 180.0f - Vector3.one;
 
         // Lectura de sensores laseres
-        for(int i = 0; i < FrontSensors.Count; i++)
+        for(int i = 0; i < FrontSensors.Count; i++) //Frontales
         {
             RaycastHit hit;
             if(Physics.Raycast(FrontSensors[i].transform.position, FrontSensors[i].transform.up * -1f, out hit, SensorDistance))
@@ -388,7 +388,7 @@ public class RobotAgent : Agent
                 Detections[i] = SensorDistance;
             }
         }
-        for(int i = 0; i < RigthSensors.Count; i++)
+        for(int i = 0; i < RigthSensors.Count; i++) // Los de la derecha
         {
             RaycastHit hit;
             if(Physics.Raycast(RigthSensors[i].transform.position, RigthSensors[i].transform.up * -1f, out hit, SensorDistance))
@@ -418,7 +418,7 @@ public class RobotAgent : Agent
                 Detections[i + FrontSensors.Count] = SensorDistance;
             }
         }
-        for(int i = 0; i < LeftSensors.Count; i++)
+        for(int i = 0; i < LeftSensors.Count; i++) // Los de la izquierda
         {
             RaycastHit hit;
             if(Physics.Raycast(LeftSensors[i].transform.position, LeftSensors[i].transform.up * -1f, out hit, SensorDistance))
@@ -455,7 +455,7 @@ public class RobotAgent : Agent
             RaycastHit hit;
             if(Physics.Raycast(CameraView[i].transform.position, CameraView[i].transform.up * -1f, out hit, CameraDistance))
             {
-                if(hit.collider.gameObject.tag == "Ninguna")
+                if(hit.collider.gameObject.tag == "Ninguna") // Se determina si la deteccion es de alguien que no quiere que se acerque
                 {
                     Debug.DrawRay(CameraView[i].transform.position, CameraView[i].transform.up * -1f * hit.distance, Color.green);
                     //Debug.Log("Encontro a alguien");
@@ -470,7 +470,7 @@ public class RobotAgent : Agent
                         SetReward(-0.005f);
                     } 
                 }
-                else if(hit.collider.gameObject.tag == "Pregunta")
+                else if(hit.collider.gameObject.tag == "Pregunta") // Se determina si la deteccion es de alguien que pregunta
                 {
                     Debug.DrawRay(CameraView[i].transform.position, CameraView[i].transform.up * -1f * hit.distance, Color.green);
                     CameraDetections_None[i] = 0; 
