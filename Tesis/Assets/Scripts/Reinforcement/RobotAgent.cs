@@ -465,9 +465,11 @@ public class RobotAgent : Agent
                     CameraDetections_Question[i] = 0;
                     CameraDistanceList[i] =  hit.distance;
                     NegativeRewardTime -= Time.deltaTime; 
+                    // Recompensa negativa cuando no encuentra un objeto prohibido o una persona preguntando en NegativeRewardTime tiempo
                     if(NegativeRewardTime <= 0)
                     {
                         SetReward(-0.005f);
+                        NegativeRewardTime = 10;
                     } 
                 }
                 else if(hit.collider.gameObject.tag == "Pregunta") // Se determina si la deteccion es de alguien que pregunta
@@ -482,13 +484,13 @@ public class RobotAgent : Agent
                     Debug.Log("Que pregunta tienes?");
                     CameraDistanceList[i] =  hit.distance; 
                     NegativeRewardTime = 10; 
+                    // Recompensa postivia cuando se encuentra una persona preguntando
                     if (!questionPersons.Contains(hit.collider.gameObject.name))
                     {
                         SetReward(0.5f);
                         questionPersons.Add(hit.collider.gameObject.name);
-                        print("En el Episodio " + nEpisode.ToString() + " se ha encontrado " + questionPersons.Count + " personas preguntando"); 
+                        Debug.Log("En el Episodio " + nEpisode.ToString() + " se ha encontrado " + questionPersons.Count + " personas preguntando"); 
                     }
-                    //Debug.Log(hit.distance);
                 }
                 else if(hit.collider.gameObject.tag == "Alto")
                 {
@@ -500,9 +502,12 @@ public class RobotAgent : Agent
                     SetReward(-0.9f*(1-(hit.distance/CameraDistance)));
                     Debug.Log("Alguien No preguntando");
                     CameraDistanceList[i] =  hit.distance; 
+                    NegativeRewardTime -= Time.deltaTime;
+                    // Recompensa negativa cuando no encuentra un objeto prohibido o una persona preguntando en NegativeRewardTime tiempo
                     if(NegativeRewardTime <= 0)
                     {
                         SetReward(-0.005f);
+                        NegativeRewardTime = 10;
                     } 
                 }
                 else if(hit.collider.gameObject.tag == "Objecto_P")
@@ -538,10 +543,11 @@ public class RobotAgent : Agent
                     CameraDetections_Question[i] = 0;
                     CameraDistanceList[i] =  CameraDistance;
                     NegativeRewardTime -= Time.deltaTime; 
-                    // Recompensa negativa cuando no encuentra un objeto prohibido en NegativeRewardTime tiempo
+                    // Recompensa negativa cuando no encuentra un objeto prohibido o una persona preguntando en NegativeRewardTime tiempo
                     if(NegativeRewardTime <= 0)
                     {
                         SetReward(-0.005f);
+                        NegativeRewardTime = 10;
                     }
                 }
                 
