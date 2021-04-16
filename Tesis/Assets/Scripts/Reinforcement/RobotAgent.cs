@@ -54,7 +54,7 @@ public class RobotAgent : Agent
     // Informacion del episodio
     private int nEpisode = 0; 
 
-    // Inicializacion del ambiente 
+    // Funcion que se ejecuta en el primer frame
     void Start () {
         // Inicializar la informacion de la pocision, fisicas y sensores del robot
         controlTime = timeOptions; 
@@ -199,7 +199,7 @@ public class RobotAgent : Agent
         }
     }
 
-    // Funcion que ejecuta las acciones recividas 
+    // Funcion que ejecuta las acciones recibidas 
     public override void OnActionReceived(float[] vectorAction)
     {
         // Acciones
@@ -354,7 +354,6 @@ public class RobotAgent : Agent
         }
 
         bool Object_Predict = false; 
-        
         RotationCamera = child.transform.localRotation.eulerAngles / 180.0f - Vector3.one;
 
         // Lectura de sensores laseres
@@ -367,6 +366,7 @@ public class RobotAgent : Agent
                 {
                     Debug.DrawRay(FrontSensors[i].transform.position, FrontSensors[i].transform.up * -1f * hit.distance, Color.green);
                     Detections[i] = hit.distance;
+                    // Recompensa negativa si el robot detecto algun objeto o persona muy cerca con sus sensores infrarojos
                     if(hit.distance < endDistance)
                     {
                         Debug.Log("choco");
@@ -397,6 +397,7 @@ public class RobotAgent : Agent
                 {
                     Debug.DrawRay(RigthSensors[i].transform.position, RigthSensors[i].transform.up * -1f * hit.distance, Color.green);
                     Detections[i + FrontSensors.Count] = hit.distance;
+                    // Recompensa negativa si el robot detecto algun objeto o persona muy cerca con sus sensores infrarojos
                     if(hit.distance < endDistance)
                     {
                         Debug.Log("choco");
@@ -427,6 +428,7 @@ public class RobotAgent : Agent
                 {
                     Debug.DrawRay(LeftSensors[i].transform.position, LeftSensors[i].transform.up * -1f * hit.distance, Color.green);
                     Detections[i + FrontSensors.Count + LeftSensors.Count] = hit.distance;
+                    // Recompensa negativa si el robot detecto algun objeto o persona muy cerca con sus sensores infrarojos
                     if(hit.distance < endDistance)
                     {
                         Debug.Log("choco");
