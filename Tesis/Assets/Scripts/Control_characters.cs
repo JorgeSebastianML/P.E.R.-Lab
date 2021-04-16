@@ -12,10 +12,10 @@ public class Control_characters : MonoBehaviour
     // Funcion que se llama en el primer frame
     void Start()
     {
-        //Debug.Log(this.transform.childCount); 
+        // Se recorre todos los gameobject hijo y se activa con una probabilidad x 
         for(int i = 0; i < this.transform.childCount; i++)
         {
-            if(Random.Range(0, 100) < 20)
+            if(Random.Range(0, 100) < probabilityActivation)
             {
                 GameObject child = this.transform.GetChild(i).gameObject;
                 child.SetActive(true); 
@@ -30,12 +30,7 @@ public class Control_characters : MonoBehaviour
                 
             }
         }
+        // Se imprime el numero total de personajes activados
         print("Numero de personas Preguntando son: " + nPersonas.ToString()); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
