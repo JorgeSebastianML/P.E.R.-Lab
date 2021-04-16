@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Control_characters : MonoBehaviour
 {
+    // Variable modificable que determina la probabilidad de activacion de personajes 0-100
     public int probabilityActivation = 20;
+    // Variables de control interno
     private List<GameObject> characteres = new List<GameObject>();
     private int nPersonas = 0; 
-    // Start is called before the first frame update
+    // Funcion que se llama en el primer frame
     void Start()
     {
         //Debug.Log(this.transform.childCount); 
