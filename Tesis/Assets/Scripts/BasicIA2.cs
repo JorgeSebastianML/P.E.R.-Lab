@@ -36,23 +36,24 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             // Se verifica que exista un destino, para poder configurarlo en el sistema de navegacion 
             if (target != null)
                 agent.SetDestination(target.position);
-
+            // Se verifica si el personaje aun no ha llegado a su destino, para reconfirmar su destino
             if (agent.remainingDistance > agent.stoppingDistance)
                 character.Move(agent.desiredVelocity, false, false);
             else
             {
+                // Se verifica si se acabo el tiempo de cambio de direccion para cambiar la direccion  
                 if (timeToChangeDirection <= 0)
                 {
                     ChangeDirection();
-                    //UnityEngine.Debug.Log(newUp);
                 }
+                // Se le ajusta la velocidad al personaje
                 agent.speed = Speed;
-                //character.Move(newUp, false, false);
+                // Se confirma el destino previmente seleccionado 
                 agent.SetDestination(newUp);
             }
         }
 
-
+        // Funcion para seleccionar un destino
         public void SetTarget(Transform target)
         {
             this.target = target;
@@ -69,7 +70,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //newUp.y = 0;
             //newUp.Normalize();
             //UnityEngine.Debug.Log(newUp);
-            timeToChangeDirection = 1.5f;
+            timeToChangeDirection = 2f;
         }
 
 
