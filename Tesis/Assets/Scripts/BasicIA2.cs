@@ -58,22 +58,19 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             this.target = target;
         }
-
+        // Funcion para cambiar aleatoriamente la direccion 
         private void ChangeDirection()
         {
-            //float x = UnityEngine.Random.Range(-0.5f, 0.5f);
-            //float z = UnityEngine.Random.Range(-0.5f, 0.5f);
-            //newUp = new Vector3(x, 0, z);
+            // Seleccionar aleatoriamente el componente x, y de la dirreccion 
             float x = UnityEngine.Random.Range(RangoPosicion[0], RangoPosicion[1]);
             float z = UnityEngine.Random.Range(RangoPosicion[2], RangoPosicion[3]);
+            // Guardar el vector de direccion en la variable newUp
             newUp = new Vector3(x, 0, z);
-            //newUp.y = 0;
-            //newUp.Normalize();
-            //UnityEngine.Debug.Log(newUp);
+            // Se reinicia el tiempo de cambio de dirreccion
             timeToChangeDirection = 2f;
         }
 
-
+        // Funcion que se actica cuando se choca con otro game object
         void OnCollisionEnter(Collision coll)
         {
             float des = UnityEngine.Random.Range(0f, 1f);
