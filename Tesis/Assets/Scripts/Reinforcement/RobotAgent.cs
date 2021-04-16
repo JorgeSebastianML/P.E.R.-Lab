@@ -90,7 +90,7 @@ public class RobotAgent : Agent
         rotationDir = 0;
     }
 
-    // Inicio del episodio 
+    // Funcion que se llama al inicio del episodio 
     public override void OnEpisodeBegin()
     {
         int nPersonas = 0; 
@@ -158,7 +158,7 @@ public class RobotAgent : Agent
         isInAction = false;
     }
 
-    // Recoleccion de Observaciones
+    // Funcion que recolecta las observaciones
     public override void CollectObservations(VectorSensor sensor)
     {
         // Rotacion de la camara del robot
@@ -199,7 +199,7 @@ public class RobotAgent : Agent
         }
     }
 
-    //
+    // Funcion que ejecuta las acciones recividas 
     public override void OnActionReceived(float[] vectorAction)
     {
         // Acciones
@@ -619,7 +619,7 @@ public class RobotAgent : Agent
                 list.Add(detectedObjects[i]); 
             }
         }
-        
+        // Se imprime los objetos que no son encontrados en el episodeo por el robot 
         print("Objetos no reconocidos en el episodio " + nEpisode.ToString() + " son: " + string.Join(" ", list)); 
     }
 

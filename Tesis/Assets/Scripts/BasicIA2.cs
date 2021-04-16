@@ -73,20 +73,19 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         // Funcion que se actica cuando se choca con otro game object
         void OnCollisionEnter(Collision coll)
         {
+            // Se genera un numero aleatorio para decidir la accion a tomar
             float des = UnityEngine.Random.Range(0f, 1f);
-            Vector3 pos = coll.transform.position;
-            //Debug.Log(newUp.ToString()); 
+            // Si el numero es menor a 0.7 se le cambia el destino por el negativo de este
             if (des < 0.7)
             {
                 agent.SetDestination(-1 * newUp);
                 new WaitForSeconds(3f); // Wait for new path
-                //Debug.Log("Stay Away");
             }
+            // Si el numero es mayor o igual a 0.7 el destino se mantiene
             else
             {
                 agent.SetDestination(newUp);
                 new WaitForSeconds(3f); // Wait for new path
-                //Debug.Log("GO!");
             }
         }
     }
