@@ -16,21 +16,24 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public float Speed = 0.5f; // Velocidad de caminata
         private Vector3 newUp; 
         public List<float> RangoPosicion; // Area en el que puede movilizarse 
-        
+
+        // Funcion que se ejecuta en el primer frame
         private void Start()
         {
-            // get the components on the object we need ( should not be null due to require component so no need to check )
+            // Se cargan los componentes de navegacion y de tercera persona del personaje 
             agent = GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
             character = GetComponent<ThirdPersonCharacter>();
-
+            // Se ajustan los parametros de actualizacion de movimiento
             agent.updateRotation = false;
             agent.updatePosition = true;
         }
 
-
+        // Funcion que se llama cada frame
         private void Update()
         {
+            // Se calcula el tiempo transcurrido
             timeToChangeDirection -= Time.deltaTime;
+            // Se verifica que exista un destino, para poder configurarlo en el sistema de navegacion 
             if (target != null)
                 agent.SetDestination(target.position);
 
