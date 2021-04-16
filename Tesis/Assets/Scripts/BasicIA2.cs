@@ -9,14 +9,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     [RequireComponent(typeof(ThirdPersonCharacter))]
     public class BasicIA2 : MonoBehaviour
     {
-        public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
-        public ThirdPersonCharacter character { get; private set; } // the character we are controlling
-        public Transform target;                                    // target to aim for 
-        private float timeToChangeDirection;
-        public float Speed = 0.5f; 
+        public UnityEngine.AI.NavMeshAgent agent { get; private set; } // Variable del navmesh para el calculo de una ruta
+        public ThirdPersonCharacter character { get; private set; } // Para el control del personaje
+        public Transform target; // Destino
+        private float timeToChangeDirection; // Variable de tiempo para el cambio de destino
+        public float Speed = 0.5f; // Velocidad de caminata
         private Vector3 newUp; 
-        public List<float> RangoPosicion;
-
+        public List<float> RangoPosicion; // Area en el que puede movilizarse 
+        
         private void Start()
         {
             // get the components on the object we need ( should not be null due to require component so no need to check )
