@@ -514,12 +514,14 @@ public class RobotAgent : Agent
                     CameraDetections_Question[i] = 0; 
                     CameraDistanceList[i] =  hit.distance; 
                     NegativeRewardTime = 10;
+                    // Recompensa cuando se encunetra un objecto prohibido y se manada la señal de advertencia
                     if(vectorAction[4] >= 0)
                     {
                         Debug.Log("Recoja el objecto prohibido");
                         Object_Predict = true;
                         SetReward(1f);
                     }
+                    // Recompensa cuando se encuentra un objecto prohibido que no se habia encontrado antes
                     if (!prohibiteObjtects.Contains(hit.collider.gameObject.name))
                     {
                         prohibiteObjtects.Add(hit.collider.gameObject.name);
@@ -536,6 +538,7 @@ public class RobotAgent : Agent
                     CameraDetections_Question[i] = 0;
                     CameraDistanceList[i] =  CameraDistance;
                     NegativeRewardTime -= Time.deltaTime; 
+                    // Recompensa negativa cuando no encuentra un objeto prohibido en NegativeRewardTime tiempo
                     if(NegativeRewardTime <= 0)
                     {
                         SetReward(-0.005f);
